@@ -1,0 +1,28 @@
+[
+  {
+    "id": "18b9c820-734b-4e8b-9ce3-2f064fe06663",
+    "title": "test",
+    "description": "test",
+    "code": 3,
+    "price": 300,
+    "status": true,
+    "stock": 5,
+    "category": "test",
+    "thumbnails": []
+  },
+  {
+    "id": "4d7785af-86d9-401e-ad03-8502d730829a",
+    "title": "test2",
+    "description": "test2",
+    "code": 3,
+    "price": 50,
+    "status": true,
+    "stock": 5,
+    "category": "test",
+    "thumbnails": [
+      1,
+      2,
+      3
+    ]
+  }
+]
