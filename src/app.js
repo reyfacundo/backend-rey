@@ -36,7 +36,7 @@ app.put("/api/products/:pid", async (req, res) => {
         const { pid } = req.params;
         const update = req.body;
         const product = await productManager.updateProductById(pid, update);
-        res.send("Product updated");
+        res.send("Product updated", product);
     } catch (error) {
         res.status(404).json({ "Couldn't update the product": error });
     }
