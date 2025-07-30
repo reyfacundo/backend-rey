@@ -20,7 +20,7 @@ class ProductManager {
             const products = JSON.parse(data);
             return products;
         } catch (error) {
-            throw new Error("Error when fetching all products", error);
+            throw new Error("Error when fetching all products");
         }
     }
     async getProductById(pid) {
@@ -28,13 +28,10 @@ class ProductManager {
             const data = await fs.promises.readFile(this.pathfile, "utf-8");
             const products = JSON.parse(data);
             const product = products.find((product) => product.id === pid);
-            if (!product) throw new Error();
+            if (!product) throw new Error("Product doesn't exist.");
             return product;
         } catch (error) {
-            throw new Error(
-                `Error when fetching the product with the ID ${pid}`,
-                error
-            );
+            throw error;
         }
     }
 
@@ -42,20 +39,7 @@ class ProductManager {
         try {
             const data = await fs.promises.readFile(this.pathfile, "utf-8");
             const products = JSON.parse(data);
-            const product = {
-                id: randomUUID(),
-                title: newProduct.title,
-                description: newProduct.description,
-                code: newProduct.code,
-                price: newProduct.price,
-                status: newProduct.status,
-                stock: newProduct.stock,
-                category: newProduct.category,
-                thumbnails: Array.isArray(newProduct.thumbnails)
-                    ? [...newProduct.thumbnails]
-                    : [],
-            };
-
+            console.log(newProduct);
             if (
                 newProduct.title === undefined ||
                 newProduct.description === undefined ||
@@ -67,6 +51,19 @@ class ProductManager {
             ) {
                 throw new Error("All required fields must be provided.");
             }
+            const product = {
+                id: randomUUID(),
+                title: newProduct.title,
+                description: newProduct.description,
+                code: +newProduct.code,
+                price: +newProduct.price,
+                status: newProduct.status,
+                stock: +newProduct.stock,
+                category: newProduct.category,
+                thumbnails: Array.isArray(newProduct.thumbnails)
+                    ? [...newProduct.thumbnails]
+                    : [],
+            };
             // const product = { id: randomUUID(), ...newProduct };
             products.push(product);
 
@@ -77,7 +74,7 @@ class ProductManager {
             );
             return product;
         } catch (error) {
-            throw new Error("Error when adding the product", error);
+            throw error;
         }
     }
     async deleteProductById(pid) {
@@ -97,7 +94,7 @@ class ProductManager {
             );
             return deletedProduct;
         } catch (error) {
-            throw new Error("Error when deleting the product", error);
+            throw error;
         }
     }
     async updateProductById(pid, update) {
@@ -117,7 +114,7 @@ class ProductManager {
 
             return products[pIndex];
         } catch (error) {
-            throw new Error("Error when updating the product", error);
+            throw error;
         }
     }
 }

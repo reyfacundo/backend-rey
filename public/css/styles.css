@@ -1,0 +1,20 @@
+body{
+    background-color: #111111;
+    color: #d3d3d3;
+}
+.product-card{
+    background-color: #d3d3d3;
+    color: #111111;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.product-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,20 @@
+<div>
+    <h1>Homepage</h1>
+    <ul class="product-container">
+        {{#each products}}
+            <li class="product-card">
+                <h3>{{this.id}}</h3>
+                <h3>{{this.title}}</h3>
+            </li>
+        {{/each}}
+    </ul>
+
+    {{#with user}}
+        <h2>{{username}}</h2>
+        {{#if isAdmin}}
+            <h3>Permiso de administrador</h3>
+        {{else}}
+            <h3>No tienes permisos de administrador</h3>
+        {{/if}}
+    {{/with}}
+</div>
