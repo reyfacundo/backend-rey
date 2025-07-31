@@ -4,6 +4,7 @@ body{
 }
 .product-card{
     background-color: #d3d3d3;
+    border-radius: 10px;
     color: #111111;
     width: 400px;
     display: flex;
@@ -17,4 +18,50 @@ body{
     gap: 30px;
     justify-content: center;
     align-items: center;
+}
+.realTimeForm{
+    margin: 50px auto;
+    background-color: #2e2e2e;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+    /* height: 300px; */
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+            fieldset{
+                border-radius: 6px;
+                width: 100%;
+                padding: 0;
+                display: flex;
+                justify-content: space-around;
+                padding: 10px 0;
+            }
+        button[type="submit"]{
+            background-color: #fff676;
+            border-radius: 5px;
+            padding: 10px;
+            border: #e0c56a 2px solid;
+            cursor: pointer;
+        }
+    }
+}
+.inputs{
+    display: flex;
+    gap: 5px;
+}
+.rightInputs, .leftInputs{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.realTime{
+    text-align: center;
 }

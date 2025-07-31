@@ -35,5 +35,49 @@
     "stock": 40,
     "category": "form",
     "thumbnails": []
+  },
+  {
+    "id": "ddd117bb-1444-43ca-ad31-363dd550464e",
+    "title": "teststestteststest",
+    "description": "teststest",
+    "code": 234,
+    "price": 23,
+    "status": "true",
+    "stock": 234,
+    "category": "teststest",
+    "thumbnails": []
+  },
+  {
+    "id": "ee5b39be-e0bf-4459-a31d-95f374069536",
+    "title": "fsfdsds",
+    "description": "fsfdsds",
+    "code": 343,
+    "price": 4,
+    "status": "true",
+    "stock": 344,
+    "category": "fsfdsds",
+    "thumbnails": []
+  },
+  {
+    "id": "58570ca9-0b05-4f4c-af17-b8ca6ff9e94c",
+    "title": "fsfdsds",
+    "description": "fsfdsds",
+    "code": 343,
+    "price": 4,
+    "status": "true",
+    "stock": 344,
+    "category": "fsfdsds",
+    "thumbnails": []
+  },
+  {
+    "id": "e2b6c4ca-84b6-4245-b377-aea09eca127b",
+    "title": "teteeteeee",
+    "description": "teteeteeee",
+    "code": 343,
+    "price": 34,
+    "status": "true",
+    "stock": 3324234,
+    "category": "teteeteeee",
+    "thumbnails": []
   }
 ]
