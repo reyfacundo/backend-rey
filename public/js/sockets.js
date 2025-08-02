@@ -12,9 +12,8 @@ form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
-
     try {
-        const response = await fetch("/api/products/realtime", {
+        const response = await fetch("/api/products", {
             method: "POST",
             body: formData,
         });
@@ -24,7 +23,7 @@ form.addEventListener("submit", async (e) => {
             form.reset();
         } else {
             const errorData = await response.json();
-            alert("Error adding product: " + errorData.error);
+            console.log("Error adding product: " + errorData.error);
         }
     } catch (err) {
         console.error(err);
@@ -35,15 +34,15 @@ socket.on("product", (data) => {
     const container = document.querySelector(".product-container");
     const li = document.createElement("li");
     li.classList.add("product-card");
-
-    const idElement = document.createElement("h3");
-    idElement.textContent = data.id;
-
+    
     const titleElement = document.createElement("h3");
     titleElement.textContent = data.title;
+    
+    const descriptionElement = document.createElement("h3");
+    descriptionElement.textContent = data.description;
 
-    li.appendChild(idElement);
     li.appendChild(titleElement);
+    li.appendChild(descriptionElement);
 
     container.appendChild(li);
 });

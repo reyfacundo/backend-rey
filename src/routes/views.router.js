@@ -1,5 +1,6 @@
 import express from "express";
 import productManager from "../managers/ProductManager.js";
+import Product from "../models/product.model.js";
 
 const viewsRouter = express.Router();
 
@@ -13,18 +14,39 @@ const viewsRouter = express.Router();
 //     }
 // }
 
+// Segunda pre-entrega //
+
+// viewsRouter.get("/", async (req, res) => {
+//     try {
+//         const products = await productManager.getProducts();
+//         res.render("home", {products})
+//     } catch (error) {
+//         res.render("error");
+//     }
+
+// });
+// viewsRouter.get("/contact", (req, res) => {
+//     res.render("contact");
+// });
+// viewsRouter.get("/realtimeproducts", async (req,res)=>{
+//     const products = await productManager.getProducts();
+//     res.render("realTimeProducts", {products});
+// });
+
+// Entrega final //
+
 viewsRouter.get("/", async (req, res) => {
     try {
         const products = await productManager.getProducts();
-        res.render("home", {products, user})
+        res.render("home", {products})
     } catch (error) {
         res.render("error");
     }
 
-})
+});
 viewsRouter.get("/contact", (req, res) => {
     res.render("contact");
-})
+});
 viewsRouter.get("/realtimeproducts", async (req,res)=>{
     const products = await productManager.getProducts();
     res.render("realTimeProducts", {products});

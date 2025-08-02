@@ -5,21 +5,14 @@ import { engine } from "express-handlebars"
 import viewsRouter from "./routes/views.router.js";
 import productsRouter from "./routes/products.router.js";
 import cartRouter from "./routes/carts.router.js";
-import mongoose from "mongoose";
+import connectMongoDB from "./config/db.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const PORT = 8080;
-
-const connectMongoDB = async() =>{
-    try {
-        await mongoose.connect("mongodb+srv://coder:coderpass123@ecommerce-cluster.c5aldnm.mongodb.net/myEcommerce?retryWrites=true&w=majority&appName=ecommerce-cluster");
-        console.log("MongoDB connected!");
-    } catch (error) {
-        console.log("Couldn't connect to MongoDB");
-    }
-}
+const PORT = process.env.PORT || 8080;
 
 connectMongoDB();
 

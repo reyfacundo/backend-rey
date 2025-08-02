@@ -79,5 +79,27 @@
     "stock": 3324234,
     "category": "teteeteeee",
     "thumbnails": []
+  },
+  {
+    "id": "a565005b-8e1d-4a07-a4f3-5ba46b73642d",
+    "title": "nuevo",
+    "description": "nuevo",
+    "code": 123,
+    "price": 23123,
+    "status": "false",
+    "stock": 321,
+    "category": "123",
+    "thumbnails": []
+  },
+  {
+    "id": "458a14f7-c624-4b24-9bf0-ce333c2ef888",
+    "title": "testtttt",
+    "description": "testtttt",
+    "code": 23,
+    "price": 23,
+    "status": "true",
+    "stock": 33,
+    "category": "testtttt",
+    "thumbnails": []
   }
 ]
