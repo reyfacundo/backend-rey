@@ -1,13 +1,22 @@
 <div>
     <h1>Homepage</h1>
-    <ul class="product-container">
-        {{#each products}}
-            <li class="product-card">
-                <h3>{{this._id}}</h3>
-                <h3>{{this.title}}</h3>
-            </li>
-        {{/each}}
-    </ul>
+    <div>
+        <ul class="product-container">
+            {{#each products}}
+                <li class="product-card">
+                    <h2>{{this.title}}</h2>
+                    <h3>${{this.price}}</h3>
+                </li>
+            {{/each}}
+        </ul>
+        <ul class="pages">
+            {{#each links}}
+                <a href={{this.link}}>
+                    <li>{{this.i}}</li>
+                </a>
+            {{/each}}
+        </ul>
+    </div>
 
     {{#with user}}
         <h2>{{username}}</h2>

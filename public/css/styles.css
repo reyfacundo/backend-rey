@@ -1,8 +1,9 @@
-body{
+body {
     background-color: #111111;
     color: #d3d3d3;
 }
-.product-card{
+
+.product-card {
     background-color: #d3d3d3;
     border-radius: 10px;
     color: #111111;
@@ -12,14 +13,16 @@ body{
     justify-content: center;
     align-items: center;
 }
-.product-container{
+
+.product-container {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
     align-items: center;
 }
-.realTimeForm{
+
+.realTimeForm {
     margin: 50px auto;
     background-color: #2e2e2e;
     width: 40%;
@@ -28,22 +31,24 @@ body{
     align-items: center;
     border-radius: 10px;
     padding: 20px;
-    /* height: 300px; */
-    form{
+
+    form {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         gap: 10px;
-            fieldset{
-                border-radius: 6px;
-                width: 100%;
-                padding: 0;
-                display: flex;
-                justify-content: space-around;
-                padding: 10px 0;
-            }
-        button[type="submit"]{
+
+        fieldset {
+            border-radius: 6px;
+            width: 100%;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+
+        button[type="submit"] {
             background-color: #fff676;
             border-radius: 5px;
             padding: 10px;
@@ -52,16 +57,44 @@ body{
         }
     }
 }
-.inputs{
+
+.inputs {
     display: flex;
     gap: 5px;
 }
-.rightInputs, .leftInputs{
-    /* border: 2px solid red; */
+
+.rightInputs,
+.leftInputs {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.realTime{
+
+.realTime {
     text-align: center;
+}
+
+.pages {
+    padding: 0;
+    margin: 50px auto 0 auto;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 15px;
+    a {
+        text-decoration: none;
+    }
+    li {
+        color: beige;
+        font-size: 1.3rem;
+        font-weight: bolder;
+        list-style: none;
+    }
+}
+
+.current-page {
+    color: rgb(243, 243, 115);
+    text-decoration: underline;
 }

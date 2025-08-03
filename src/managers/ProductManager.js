@@ -9,8 +9,7 @@ import Product from "../models/product.model.js";
 // const productsPath = path.resolve(__dirname, "../data/products.json");
 
 class ProductManager {
-
-        /*// Segunda pre-entrega //
+    /*// Segunda pre-entrega //
 
     // constructor(pathfile) {
     //     this.pathfile = pathfile;
@@ -123,9 +122,16 @@ class ProductManager {
     // }*/
 
     // Entrega final //
-    async getProducts() {
+    async getProducts(limit, page) {
         try {
-            const data = await Product.find().lean();
+            if (!limit || !page) {
+                limit = 4;
+                page = 1;
+            }
+            const data = await Product.paginate(
+                {},
+                { limit, page, lean: true }
+            );
             return data;
         } catch (error) {
             throw new Error("Error when fetching all products");
@@ -165,8 +171,8 @@ class ProductManager {
                     ? [...newProduct.thumbnails]
                     : [],
             };
-            console.log(product)
-            
+            console.log(product);
+
             const productInstance = new Product(product);
             await productInstance.save();
             return product;
@@ -177,7 +183,7 @@ class ProductManager {
     async deleteProductById(pid) {
         try {
             const deletedProduct = await Product.findByIdAndDelete(pid);
-            if(!deletedProduct) throw new Error("Product not found")
+            if (!deletedProduct) throw new Error("Product not found");
             return deletedProduct;
         } catch (error) {
             throw error;
@@ -185,8 +191,11 @@ class ProductManager {
     }
     async updateProductById(pid, update) {
         try {
-            const updated = await Product.findByIdAndUpdate(pid, update, {new: true, runValidators:true});
-            if(!updated){
+            const updated = await Product.findByIdAndUpdate(pid, update, {
+                new: true,
+                runValidators: true,
+            });
+            if (!updated) {
                 throw new Error("The product doesn't exist");
             }
             return updated;

@@ -20,7 +20,7 @@ const productsRouter = express.Router();
 //     try {
 //         const {title,description,category,code,stock,price,status,file} = req.body;
 //         let thumbnailsUrl = "/img/" + file;
-//         const newProd =  {title,description,category,code,stock,price,status,thumbnailsUrl} 
+//         const newProd =  {title,description,category,code,stock,price,status,thumbnailsUrl}
 //         const product = await productManager.addProduct(newProd);
 //         io.emit("product", product);
 //         res.sendStatus(201);
@@ -59,20 +59,39 @@ const productsRouter = express.Router();
 
 // Entrega Final //
 
-productsRouter.get("/", (req,res)=>{
+productsRouter.get("/", async (req, res) => {
     try {
-        res.render("product-form");
-    } catch (error){
-        console.log(error);
-        res.status(404);
+        const { limit, page } = req.query;
+        const products = await productManager.getProducts(limit, page);
+        res.json({ status: "successful", payload: products.docs });
+    } catch (error) {
+        res.status(404).json({ error: error.message });
     }
 });
-productsRouter.post("/",  uploader.single("file"), async (req, res) => {
+productsRouter.post("/", uploader.single("file"), async (req, res) => {
     try {
-        console.log(req.body)
-        const {title,description,category,code,stock,price,status,file} = req.body;
+        console.log(req.body);
+        const {
+            title,
+            description,
+            category,
+            code,
+            stock,
+            price,
+            status,
+            file,
+        } = req.body;
         let thumbnailsUrl = "/img/" + file;
-        const newProd =  {title,description,category,code,stock,price,status,thumbnails:thumbnailsUrl} 
+        const newProd = {
+            title,
+            description,
+            category,
+            code,
+            stock,
+            price,
+            status,
+            thumbnails: thumbnailsUrl,
+        };
         const product = await productManager.addProduct(newProd);
         io.emit("product", product);
         res.sendStatus(201);
@@ -96,7 +115,9 @@ productsRouter.put("/:pid", async (req, res) => {
         const product = await productManager.updateProductById(pid, update);
         res.send("Product updated", product);
     } catch (error) {
-        res.status(404).json({ "Couldn't update the product": error.messageror });
+        res.status(404).json({
+            "Couldn't update the product": error.messageror,
+        });
     }
 });
 productsRouter.delete("/:pid", async (req, res) => {
@@ -108,7 +129,5 @@ productsRouter.delete("/:pid", async (req, res) => {
         res.status(404).json({ "Couldn't delete the product": error.message });
     }
 });
-
-
 
 export default productsRouter;

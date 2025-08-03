@@ -34,10 +34,10 @@ socket.on("product", (data) => {
     const container = document.querySelector(".product-container");
     const li = document.createElement("li");
     li.classList.add("product-card");
-    
+
     const titleElement = document.createElement("h3");
     titleElement.textContent = data.title;
-    
+
     const descriptionElement = document.createElement("h3");
     descriptionElement.textContent = data.description;
 

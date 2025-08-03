@@ -1,17 +1,37 @@
 <div class="realTimeForm">
     <form enctype="multipart/form-data" id="realTimeForm">
-    <span class="inputs">
-    <span class="leftInputs">
-        <input type="text" name="title" placeholder="Title" required/>
-        <input type="text" name="description" placeholder="Description" required/>
-        <input type="text" name="category" placeholder="Category" required/>
-    </span>
-    <span class="rightInputs">
-        <input type="number" name="stock" placeholder="Stock" required/>
-        <input type="number" name="price" placeholder="Price" required/>
-        <input type="number" name="code" placeholder="Code" required/>
-    </span>
-    </span>
+        <span class="inputs">
+            <span class="leftInputs">
+                <input type="text" name="title" placeholder="Title" required />
+                <input
+                    type="text"
+                    name="description"
+                    placeholder="Description"
+                    required
+                />
+                <input
+                    type="text"
+                    name="category"
+                    placeholder="Category"
+                    required
+                />
+            </span>
+            <span class="rightInputs">
+                <input
+                    type="number"
+                    name="stock"
+                    placeholder="Stock"
+                    required
+                />
+                <input
+                    type="number"
+                    name="price"
+                    placeholder="Price"
+                    required
+                />
+                <input type="number" name="code" placeholder="Code" />
+            </span>
+        </span>
         <fieldset>
             <legend>Status:</legend>
             <label><input type="radio" name="status" value="true" />
@@ -27,10 +47,15 @@
     <h1 class="realTime">Real Time Products</h1>
     <ul class="product-container">
         {{#each products}}
-        <li class="product-card">
-            <h3>{{this.title}}</h3>
-            <h3>{{this.description}}</h3>
-        </li>
+            <li class="product-card">
+                <h2>{{this.title}}</h2>
+                <h3>${{this.price}}</h3>
+            </li>
+        {{/each}}
+    </ul>
+    <ul class="pages">
+        {{#each links}}
+            <a href={{this.link}}><li>{{this.i}}</li></a>
         {{/each}}
     </ul>
 </div>

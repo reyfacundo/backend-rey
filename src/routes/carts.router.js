@@ -1,13 +1,14 @@
 import express from "express";
+import cartManager from "../managers/CartManager.js";
 
 const cartRouter = express.Router();
 
 cartRouter.post("/", async (req, res) => {
     try {
-        await cartManager.addCart();
-        res.send("Cart created successfully");
+        const cart = await cartManager.addCart();
+        res.send("Cart created successfully", cart);
     } catch (error) {
-        res.status(400).json({ "Couldn't create the new cart": error.message });
+        res.status(400).json({ error: error.message });
     }
 });
 cartRouter.get("/", async (req, res) => {
@@ -15,26 +16,27 @@ cartRouter.get("/", async (req, res) => {
         const carts = await cartManager.getCarts();
         res.json(carts);
     } catch (error) {
-        res.status(404).json({ "Couldn't fetch all the carts": error.message });
+        res.status(404).json({ error: error.message });
     }
 });
 cartRouter.get("/:cid", async (req, res) => {
     try {
         const { cid } = req.params;
         const cartProducts = await cartManager.getCartById(cid);
-        res.json({ products: cartProducts.products });
+        res.json({ status: "success", products: cartProducts.products });
     } catch (error) {
-        res.status(404).json({ "Cart not found": error.message });
+        res.status(404).json({ error: error.message });
     }
 });
 cartRouter.post("/:cid/product/:pid", async (req, res) => {
     try {
         const { cid, pid } = req.params;
-        await cartManager.addProduct(cid, pid);
-        res.send("Product added.");
+        const { quantity } = req.body;
+        const product = await cartManager.addProduct(cid, pid, quantity);
+        res.json({ status: "success", payload: product });
     } catch (error) {
-        res.status(400).json({ "Couldn't add the product to the cart": error.message });
+        res.status(400).json({ error: error.message });
     }
 });
 
-export default cartRouter
+export default cartRouter;
