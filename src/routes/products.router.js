@@ -94,7 +94,7 @@ productsRouter.post("/", uploader.single("file"), async (req, res) => {
         };
         const product = await productManager.addProduct(newProd);
         io.emit("product", product);
-        res.sendStatus(201);
+        res.json({status:"Product created"})
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -124,7 +124,7 @@ productsRouter.delete("/:pid", async (req, res) => {
     try {
         const { pid } = req.params;
         await productManager.deleteProductById(pid);
-        res.send("Product deleted successfully");
+        res.json({status:"Product deleted successfully"});
     } catch (error) {
         res.status(404).json({ "Couldn't delete the product": error.message });
     }

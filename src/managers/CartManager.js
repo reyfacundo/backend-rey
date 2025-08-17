@@ -100,22 +100,22 @@ class CartManager {
             throw error;
         }
     }
-    // async addProduct(cid, pid, quantity) {
-    //     const cart = await Cart.findById(cid);
-    //     if (!cart) throw new Error("Cart not found");
+    async addProduct(cid, pid, quantity) {
+        const cart = await Cart.findById(cid);
+        if (!cart) throw new Error("Cart not found");
 
-    //     const prodIndex = cart.products.findIndex(
-    //         (p) => p.product.toString() === pid
-    //     );
-    //     if (prodIndex !== -1) {
-    //         cart.products[prodIndex].quantity += quantity;
-    //     } else {
-    //         cart.products.push({ product: pid, quantity });
-    //     }
+        const prodIndex = cart.products.findIndex(
+            (p) => p.product.toString() === pid
+        );
+        if (prodIndex !== -1) {
+            cart.products[prodIndex].quantity += quantity;
+        } else {
+            cart.products.push({ product: pid, quantity });
+        }
 
-    //     await cart.save();
-    //     return cart;
-    // }
+        await cart.save();
+        return cart;
+    }
 }
 
 const cartManager = new CartManager();
