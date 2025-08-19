@@ -103,16 +103,19 @@ class CartManager {
     async addProduct(cid, pid, quantity) {
         const cart = await Cart.findById(cid);
         if (!cart) throw new Error("Cart not found");
-
+        const product = await productManager.getProductById(pid);
+        if(!product) throw new Error("Product not found");
+        if(product.stock < quantity) throw new Error("Not enough stock");
+        console.log("product", product)
         const prodIndex = cart.products.findIndex(
             (p) => p.product.toString() === pid
         );
         if (prodIndex !== -1) {
-            cart.products[prodIndex].quantity += quantity;
+            cart.products[prodIndex].quantity += +quantity;
         } else {
             cart.products.push({ product: pid, quantity });
         }
-
+        await productManager.updateProductById(pid, {stock:product.stock - quantity});
         await cart.save();
         return cart;
     }

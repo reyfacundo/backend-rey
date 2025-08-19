@@ -140,7 +140,7 @@ class ProductManager {
     async getProductById(pid) {
         try {
             const product = await Product.findById(pid);
-            if (!product) throw new Error("Product doesn't exist.");
+            if (!product) throw new Error("The product doesn't exist.");
             return product;
         } catch (error) {
             throw error;
